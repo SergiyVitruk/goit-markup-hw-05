@@ -492,6 +492,8 @@ button {
 }
 
 .email-subscribe {
+    color: #fff;
+    font-size: 12px;
     border: 1px solid #fff;
     border-radius: 4px;
     width: 264px;
@@ -504,15 +506,14 @@ button {
     padding-left: 16px;
 }
 
-input::placeholder {
+.email-subscribe::placeholder {
     color: #fff;
-    font-size: 12px;
 }
 
 .btn-subscribe {
     border-radius: 4px;
     padding: 8px 24px;
-    width: 165px;
+    min-width: 165px;
     height: 40px;
     background: #4d5ae5;
     font-weight: 500;
@@ -523,10 +524,12 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    cursor: pointer;
+    border: none;
 }
 
 .icon-subscribe {
+    margin-left: 16px;
     fill: #fff;
 }
 
@@ -545,7 +548,7 @@ input::placeholder {
     align-items: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-overlay.is-open {
@@ -554,26 +557,30 @@ input::placeholder {
 }
 
 .modal {
-    margin-top: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-height: 584px;
+    transform: translate(-50%, -50%);
+    width: 408px;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     background-color: #fcfcfc;
     border-radius: 4px;
-    width: 408px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 2px 1px 0 rgba(0, 0, 0, 0.2);
-    padding: 24px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-}
-
-.close-form {
-    display: flex;
-    justify-content: flex-end;
+    padding: 72px 24px 24px 24px;
 }
 
 .close-form-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
     background-color: #e7e9fc;
@@ -584,12 +591,20 @@ input::placeholder {
     margin-bottom: 24px;
 }
 
-.close-icon-container {
-    justify-content: center;
+.close-form-btn:hover,
+.close-form-btn:focus {
+    background-color: #404bbf;
+    border: none;
 }
 
 .close-form-icon {
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
     fill: #2e2f42;
+}
+
+.close-form-btn:hover .close-form-icon,
+.close-form-btn:focus .close-form-icon {
+    fill: #ffffff;
 }
 
 .fb-form-txt {
@@ -613,86 +628,126 @@ input::placeholder {
     line-height: 1.17;
     letter-spacing: 0.04em;
     color: #8e8f99;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: block;
+    margin-bottom: 4px;
 }
 
 .form-input-design {
     border: 1px solid rgba(46, 47, 66, 0.4);
     border-radius: 4px;
-    width: 360px;
+    background-color: transparent;
     height: 40px;
-    padding: 8px 36px;
+    padding-left: 38px;
+    width: 100%;
+    outline: transparent;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-box {
+    position: relative;
+    margin-bottom: 8px;
 }
 
 .input-box {
     position: relative;
 }
 
-.input-icon {
-    fill: #2e2f42;
-    position: absolute;
-    top: 23%;
-    left: 4%;
-}
-
-.form-input-comment {
-    border: 1px solid rgba(46, 47, 66, 0.4);
-    border-radius: 4px;
-    width: 360px;
-    height: 120px;
-    resize: none;
-    padding: 8px 16px;
-}
-
-.pp-checkbox {
-    display: flex;
-    font-size: 12px;
-    line-height: 1.17;
-    letter-spacing: 0.04em;
-    color: #8e8f99;
-    gap: 8px;
-    margin-bottom: 24px;
-    align-items: center;
-}
-
-.privacy-policy {
-    line-height: 1.33;
-    text-decoration: underline;
-    text-decoration-skip-ink: none;
-    color: #4d5ae5;
-}
-
-.submit-fb-btn-design {
-    display: flex;
-    justify-content: center;
-}
-
-.submit-fb-btn {
-    border-radius: 4px;
-    padding: 16px 32px;
-    width: 169px;
-    height: 56px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-    background-color: #4d5ae5;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: 0.04em;
-    text-align: center;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.form-input-design:hover  + svg,
-.form-input-design:focus + svg {
+.form-input-design:hover+svg,
+.form-input-design:focus+svg {
     fill: #4d5ae5;
 }
 
 .form-input-design:hover,
 .form-input-design:focus,
 .form-input-design:focus-within {
-    border: 1px solid #4d5ae5;
+    border-color: #4D5AE5;
+}
+
+.input-icon {
+    fill: #2e2f42;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.textarea-box {
+    margin-bottom: 16px;
+}
+
+
+.form-input-comment {
+    border-radius: 4px;
+    width: 100%;
+    height: 120px;
+    resize: none;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: rgba(46, 47, 66, 0.4);
+    border: 1px solid rgba(46, 47, 66, 0.4); 
+    background-color: transparent;
+    padding: 8px 16px;
+    outline: transparent;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-input-comment:hover,
+.form-input-comment:focus,
+.form-input-comment:focus-within {
+    border-color: #4D5AE5;
+}
+
+.pp-checkbox {
+    margin-bottom: 24px;
+}
+
+.user-privacy {
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.04em;
+    color: #8e8f99;
+}
+
+.policy-design {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(46, 47, 66, 0.4);
+    border-radius: 2px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    fill: transparent;
+    margin-right: 8px;
+}
+
+.input:checked+label>span {
+    background-color: #404bbf;
+    fill: #F4F4FD;
+    border: none;
+}
+
+.policy-link-design {
+    color: #4d5ae5;
+    line-height: 1.33333;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+}
+
+.submit-fb-btn {
+    display: block;
+    min-width: 169px;
+    height: 56px;
+    font-family: "Roboto", sans-serif;
+    font-style: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #fff;
+    cursor: pointer;
+    background-color: #4d5ae5;
+    border: none;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
